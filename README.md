@@ -1,43 +1,30 @@
-# Elite-Athletic---AI-Advisor
-Agentic-AI project
+# Elite Athletic AI Advisor
 
-An AI-powered youth athletic development advisor that combines fitness benchmarks, nutrition science, exercise databases, and safety guidelines to generate personalized weekly training, recovery, and nutrition plans for young athletes.
+Final project for **AAI 510: Agentic AI Systems** in the University of San Diego MS in Applied Artificial Intelligence program.
 
-## LLM and Agent Setup
+## Project
 
-Run the notebooks/scripts in this order in Databricks:
+Elite Athletic AI Advisor is a coach- and parent-supervised planning assistant for youth basketball athletes. It uses athlete profiles, fitness benchmarks, exercise data, nutrition guidance, and safety rules to draft weekly training and recovery plans.
 
-1. `01_data_pipeline.py` to create the Bronze, Silver, and Gold tables.
-2. `02_agent_definition.py` to define the tools, profile-intake flow, and two-LLM agent.
-3. `03_evaluate_multi_llm.py` to compare the two LLM endpoints and save evaluation tables.
+The course implementation includes a Databricks data pipeline, agent tools, model-serving calls, MLflow traces, safety checks, and evaluation across two language-model endpoints.
 
-The agent now uses two LLM roles:
+## Repository map
 
-- `model_endpoint`: primary planner LLM that drafts the athlete plan.
-- `review_model_endpoint`: second LLM that reviews the draft for safety, grounding, clarity, and human-review needs.
+- Root notebooks, Python files, CSVs, and the commentary document preserve the submitted team project.
+- `portfolio_extension/` contains **Callum Lamb's post-submission portfolio extension**. It organizes the pipeline, agent, evaluation, and business case into a clearer runnable sequence.
 
-For evaluation, set these Databricks widgets:
+Run the extension in this order:
 
-- `primary_model_endpoint`: first model serving endpoint.
-- `comparison_model_endpoint`: second model serving endpoint.
-- `judge_model_endpoint`: optional evaluator endpoint. If unset, the primary endpoint is used.
-- `allow_mock_llm`: set to `true` for a local classroom demo without live model endpoints.
+1. `portfolio_extension/01_data_pipeline.py`
+2. `portfolio_extension/02_agent_definition.py`
+3. `portfolio_extension/03_evaluate_multi_llm.py`
 
-Example calls:
+The extension supports mock-model execution for development. Live execution requires Databricks, MLflow, configured model-serving endpoints, and appropriate workspace permissions.
 
-```python
-generate_weekly_plan(
-    athlete_id="A003",
-    request="Build a conditioning week without aggravating knee recovery.",
-    model_endpoint=PRIMARY_MODEL_ENDPOINT,
-    review_model_endpoint=COMPARISON_MODEL_ENDPOINT,
-    return_context=True,
-)
+## Safety scope
 
-generate_plan_from_user_input(
-    user_input="I'm 16, play shooting guard, want better explosiveness, have knee soreness, and can train 4 days a week.",
-    model_endpoint=PRIMARY_MODEL_ENDPOINT,
-    review_model_endpoint=COMPARISON_MODEL_ENDPOINT,
-    return_context=True,
-)
-```
+The prototype supplies educational training, recovery, and general food guidance. It does not provide medical advice, supplement plans, fasting plans, extreme diets, or weight-cutting guidance. Injury-related recommendations require human review.
+
+## Provenance and reuse
+
+This is a provenance-preserving fork of the team repository, with original contributions associated with GitHub users `Beakal-23` and `J2NM`. The `portfolio_extension/` work is attributed to **Callum Lamb**. No license was supplied with the upstream project, so public visibility does not grant reuse rights; see `NOTICE.md`.
