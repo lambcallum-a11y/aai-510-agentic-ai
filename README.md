@@ -12,6 +12,7 @@ The course implementation includes a Databricks data pipeline, agent tools, mode
 
 - Root notebooks, Python files, CSVs, and the commentary document preserve the submitted team project.
 - `portfolio_extension/` contains **Callum Lamb's post-submission portfolio extension**. It organizes the pipeline, agent, evaluation, and business case into a clearer runnable sequence.
+- `deliverables/Final_Business_Case.pdf` and `deliverables/Evaluation_Commentary.pdf` provide browser-friendly final project artifacts.
 
 Run the extension in this order:
 
